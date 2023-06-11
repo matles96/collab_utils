@@ -1,3 +1,5 @@
+import os
+
 _base_ = "../bases/al_retinanet_base.py"
 
 labeled_data = ''
@@ -29,7 +31,7 @@ lr_config = dict(
     warmup_ratio=0.001,
     step=[20])
 
-runner = dict(type='EpochBasedRunner', max_epochs=2)
-checkpoint_config = dict(interval=2, max_keep_ckpts=1, by_epoch=True)
+runner = dict(type='EpochBasedRunner', max_epochs=int(os.getenv("EPOCHES")))
+checkpoint_config = dict(interval=int(os.getenv("EPOCHES")), max_keep_ckpts=1, by_epoch=True)
 
 
